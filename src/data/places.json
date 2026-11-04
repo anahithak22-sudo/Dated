@@ -393,13 +393,13 @@
   {
     "id": "pushkin-41",
     "type": "food",
-    "name": "Завтраки на Пушкина, 41",
-    "description": "Место для вкусного завтрака, советуют медовик. Название уточнить: по этому адресу числятся ресторан Chaman и Owl's cafebar.",
+    "name": "Jam",
+    "description": "Место для вкусного завтрака, советуют медовик. По отзывам цены приятные, без 10% за обслуживание.",
     "address": "ул. Пушкина, 41, Ереван",
     "hours": null,
     "priceMin": null,
     "priceMax": null,
-    "link": "",
+    "link": "https://yandex.com.ge/maps/org/jam/91906046803/",
     "source": ""
   },
   {
@@ -521,8 +521,8 @@
     "priceMin": 3000,
     "priceMax": 3000,
     "priceNote": "на двоих (вход в Гарни; Гегард бесплатно)",
-    "link": "https://vt.tiktok.com/ZSpN1812y/",
-    "source": "https://vt.tiktok.com/ZSpN1812y/"
+    "link": "",
+    "source": ""
   },
   {
     "id": "perfume-museum",
@@ -546,6 +546,75 @@
     "priceMin": null,
     "priceMax": null,
     "link": "https://www.spyur.am/en/companies/voskevaz-winery/24690",
+    "source": ""
+  },
+  {
+    "id": "noahs-harbor",
+    "type": "fun",
+    "name": "Noah’s Harbor",
+    "description": "Поездка в Эчмиадзин: парк со страусами и другими животными, есть ресторан. Можно гулять самим, экскурсия по желанию.",
+    "address": "г. Эчмиадзин, ш. Маргара, 63",
+    "hours": null,
+    "priceMin": 10000,
+    "priceMax": 10000,
+    "link": "https://vt.tiktok.com/ZSpN1812y/",
+    "source": "https://vt.tiktok.com/ZSpN1812y/",
+    "priceNote": "на двоих за экскурсию (по отзыву, 5 000 ֏ с человека)"
+  },
+  {
+    "id": "hot-city",
+    "type": "fun",
+    "name": "HOT CITY",
+    "description": "Целый мини-город развлечений: квесты, тайные проходы, лазертаг, VR 9D, кулинарный клуб, кинотеатры.",
+    "address": "ул. Верин Антараин, 144/3, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://www.instagram.com/hot_city_evn/",
+    "source": ""
+  },
+  {
+    "id": "nairi-archery",
+    "type": "fun",
+    "name": "Nairi Archery",
+    "description": "Стрельба из лука в тире с инструктором — вдвоём соревноваться в меткости. Точный адрес уточнить: «Карты» ищут по названию.",
+    "address": "Nairi Archery, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "",
+    "source": ""
+  },
+  {
+    "id": "historical",
+    "type": "fun",
+    "name": "Historical",
+    "description": "Место из TikTok-видео — подробности в ролике. Адрес уточнить: «Карты» ищут по названию.",
+    "address": "Historical, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://vt.tiktok.com/ZSpLKDtwa/",
+    "source": "https://vt.tiktok.com/ZSpLKDtwa/"
+  },
+  {
+    "id": "botanical-garden",
+    "type": "fun",
+    "name": "Ботанический сад",
+    "description": "Большой старый сад для неспешной прогулки вдвоём: аллеи, оранжереи, тишина посреди города.",
+    "address": "ул. Ачаряна, 1, Ереван",
+    "hours": {
+      "mon": "09:00–21:00",
+      "tue": "09:00–21:00",
+      "wed": "09:00–21:00",
+      "thu": "09:00–21:00",
+      "fri": "09:00–21:00",
+      "sat": "часы уточнить",
+      "sun": "часы уточнить"
+    },
+    "priceMin": null,
+    "priceMax": null,
+    "link": "",
     "source": ""
   }
 ]
