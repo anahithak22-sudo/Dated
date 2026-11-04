@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import StarField from './components/StarField.jsx'
 import TodayView from './components/TodayView.jsx'
 import PlacesView from './components/PlacesView.jsx'
 import { isShared, store } from './lib/store.js'
-import { places } from './lib/places.js'
+import { builtInPlaces } from './lib/places.js'
 
 const TABS = [
   { id: 'today', label: 'Наш день' },
@@ -34,13 +34,16 @@ export default function App() {
     return () => document.removeEventListener('visibilitychange', onVisible)
   }, [refresh])
 
+  // Возвращает true, если действие прошло успешно (форма по нему закрывается)
   const run = (fn) => async (...args) => {
     setBusy(true)
     try {
       await fn(...args)
       await refresh()
+      return true
     } catch (e) {
       setError(`Не получилось сохранить: ${e.message}`)
+      return false
     } finally {
       setBusy(false)
     }
@@ -54,8 +57,12 @@ export default function App() {
       await store.setArchived([d.food_id, d.fun_id], true)
     }),
     onArchive: run((id, value) => store.setArchived([id], value)),
+    onAddPlace: run((place) => store.addPlace(place)),
+    onUpdatePlace: run((id, place) => store.updatePlace(id, place)),
+    onDeletePlace: run((id) => store.deletePlace(id)),
   }
 
+  const places = useMemo(() => [...builtInPlaces, ...(state?.custom ?? [])], [state])
   const archivedCount = state ? places.filter((p) => state.archived[p.id]).length : 0
 
   return (
@@ -99,9 +106,18 @@ export default function App() {
           {!state ? (
             <div className="loading">✦</div>
           ) : tab === 'today' ? (
-            <TodayView state={state} busy={busy} {...actions} />
+            <TodayView state={state} places={places} busy={busy} {...actions} />
           ) : (
-            <PlacesView mode={tab === 'archive' ? 'archive' : 'active'} state={state} busy={busy} onArchive={actions.onArchive} />
+            <PlacesView
+              mode={tab === 'archive' ? 'archive' : 'active'}
+              places={places}
+              state={state}
+              busy={busy}
+              onArchive={actions.onArchive}
+              onAddPlace={actions.onAddPlace}
+              onUpdatePlace={actions.onUpdatePlace}
+              onDeletePlace={actions.onDeletePlace}
+            />
           )}
         </main>
 

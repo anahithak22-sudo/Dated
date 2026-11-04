@@ -9,6 +9,7 @@
 | Что | Где |
 | --- | --- |
 | Места: название, описание, адрес, часы, цена, ссылка | `src/data/places.json` (в репозитории) |
+| Места, добавленные через кнопку «+ Добавить место» | Supabase, таблица `custom_places` |
 | Архив, свидания, оценки, история | Supabase (общее для обоих телефонов) |
 
 Без Supabase сайт работает в «локальном режиме» — всё хранится в браузере. Удобно для разработки.
@@ -32,6 +33,25 @@
 ```
 
 `id` не меняем после добавления — к нему привязаны архив и история.
+
+## Добавление мест через сайт
+
+На вкладке «Места» есть кнопка **+ Добавить место**: тип, название, описание, адрес, ссылка,
+цена и часы по дням. Такие места хранятся в Supabase, видны на обоих телефонах, их можно
+изменить или удалить (кнопка «✎ Изменить» на карточке).
+
+Для этого нужна таблица `custom_places`. Если база создавалась до появления этой функции,
+выполните в Supabase → SQL Editor по очереди три команды (каждую отдельно):
+
+```sql
+create table if not exists public.custom_places (id text primary key, data jsonb not null, created_at timestamptz not null default now())
+```
+```sql
+alter table public.custom_places enable row level security
+```
+```sql
+create policy "anon all custom_places" on public.custom_places for all to anon using (true) with check (true)
+```
 
 ## Подключение Supabase (≈5 минут)
 

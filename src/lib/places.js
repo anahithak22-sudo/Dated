@@ -1,7 +1,7 @@
 import placesData from '../data/places.json'
 
-export const places = placesData
-export const placesById = Object.fromEntries(places.map((p) => [p.id, p]))
+// Встроенные места (из репозитория). Добавленные через сайт приходят из хранилища
+export const builtInPlaces = placesData
 
 // JS getDay(): 0 = воскресенье
 export const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
@@ -76,14 +76,14 @@ function pickRandom(list, avoidId) {
   return pool[Math.floor(Math.random() * pool.length)]
 }
 
-export function availablePlaces(type, archived, dayKey) {
+export function availablePlaces(places, type, archived, dayKey) {
   return places.filter((p) => p.type === type && !archived[p.id] && isOpenOn(p, dayKey))
 }
 
 // «Другой вариант» меняет оба места, по возможности не повторяя предыдущие
-export function generateCombo(archived, dayKey, previous) {
-  const food = pickRandom(availablePlaces('food', archived, dayKey), previous?.food?.id)
-  const fun = pickRandom(availablePlaces('fun', archived, dayKey), previous?.fun?.id)
+export function generateCombo(places, archived, dayKey, previous) {
+  const food = pickRandom(availablePlaces(places, 'food', archived, dayKey), previous?.food?.id)
+  const fun = pickRandom(availablePlaces(places, 'fun', archived, dayKey), previous?.fun?.id)
   return { food, fun }
 }
 

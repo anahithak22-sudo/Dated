@@ -1,4 +1,4 @@
-// Общее состояние: архив мест и свидания с оценками.
+// Общее состояние: места, добавленные через сайт, архив мест и свидания с оценками.
 // Если заданы VITE_SUPABASE_URL и VITE_SUPABASE_ANON_KEY — всё хранится в Supabase
 // (общее для обоих телефонов). Иначе — в localStorage этого браузера (для разработки).
 import { createClient } from '@supabase/supabase-js'
@@ -34,7 +34,22 @@ const remote = {
     ])
     const archived = {}
     for (const s of states) if (s.archived) archived[s.place_id] = true
-    return { archived, dates }
+    // Таблицы custom_places может ещё не быть — тогда остальное всё равно работает
+    const res = await supabase.from('custom_places').select('id, data').order('created_at')
+    const customReady = !res.error
+    const custom = customReady ? res.data.map((r) => ({ ...r.data, id: r.id, custom: true })) : []
+    return { archived, dates, custom, customReady }
+  },
+  async addPlace(place) {
+    const { id, custom, ...data } = place
+    check(await supabase.from('custom_places').insert({ id: newPlaceId(), data }))
+  },
+  async updatePlace(id, place) {
+    const { id: _id, custom, ...data } = place
+    check(await supabase.from('custom_places').update({ data }).eq('id', id))
+  },
+  async deletePlace(id) {
+    check(await supabase.from('custom_places').delete().eq('id', id))
   },
   async setArchived(ids, value) {
     const rows = ids.map((place_id) => ({ place_id, archived: value, updated_at: new Date().toISOString() }))
@@ -56,12 +71,17 @@ const remote = {
   },
 }
 
+function newPlaceId() {
+  return `u-${crypto.randomUUID().slice(0, 8)}`
+}
+
 const LS_KEY = 'dated-state-v1'
 function readLocal() {
   try {
-    return JSON.parse(localStorage.getItem(LS_KEY)) ?? { archived: {}, dates: [] }
+    const s = JSON.parse(localStorage.getItem(LS_KEY)) ?? {}
+    return { archived: s.archived ?? {}, dates: s.dates ?? [], custom: s.custom ?? [] }
   } catch {
-    return { archived: {}, dates: [] }
+    return { archived: {}, dates: [], custom: [] }
   }
 }
 function writeLocal(state) {
@@ -76,7 +96,24 @@ const local = {
   async load() {
     const s = readLocal()
     s.dates.sort((a, b) => b.day.localeCompare(a.day))
-    return s
+    return { ...s, custom: s.custom.map((p) => ({ ...p, custom: true })), customReady: true }
+  },
+  async addPlace(place) {
+    const s = readLocal()
+    const { custom, ...data } = place
+    s.custom.push({ ...data, id: newPlaceId() })
+    writeLocal(s)
+  },
+  async updatePlace(id, place) {
+    const s = readLocal()
+    const { custom, ...data } = place
+    s.custom = s.custom.map((p) => (p.id === id ? { ...data, id } : p))
+    writeLocal(s)
+  },
+  async deletePlace(id) {
+    const s = readLocal()
+    s.custom = s.custom.filter((p) => p.id !== id)
+    writeLocal(s)
   },
   async setArchived(ids, value) {
     const s = readLocal()

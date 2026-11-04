@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import PlaceCard from './PlaceCard.jsx'
 import StarRating from './StarRating.jsx'
-import { dayKeyOf, formatDay, generateCombo, placesById, todayISO } from '../lib/places.js'
+import { dayKeyOf, formatDay, generateCombo, todayISO } from '../lib/places.js'
 
 const missing = (id, type) => ({
   id, type, name: 'Место удалено из списка', description: '', address: '—', hours: null, link: '',
 })
 
-function PendingDate({ date, onRate, onCancel, busy }) {
+function PendingDate({ date, placesById, onRate, onCancel, busy }) {
   const [food, setFood] = useState(0)
   const [fun, setFun] = useState(0)
   const dayKey = dayKeyOf(date.day)
@@ -56,12 +56,12 @@ function PendingDate({ date, onRate, onCancel, busy }) {
   )
 }
 
-function Generator({ archived, onAccept, busy }) {
+function Generator({ places, archived, onAccept, busy }) {
   const [day, setDay] = useState(todayISO())
   const [combo, setCombo] = useState(null)
   const dayKey = dayKeyOf(day)
 
-  const generate = () => setCombo(generateCombo(archived, dayKey, combo))
+  const generate = () => setCombo(generateCombo(places, archived, dayKey, combo))
   const ready = combo?.food && combo?.fun
 
   return (
@@ -121,11 +121,12 @@ function Generator({ archived, onAccept, busy }) {
   )
 }
 
-export default function TodayView({ state, busy, onAccept, onRate, onCancel }) {
+export default function TodayView({ state, places, busy, onAccept, onRate, onCancel }) {
   const pending = state.dates.find((d) => d.status === 'pending')
+  const placesById = Object.fromEntries(places.map((p) => [p.id, p]))
   return pending ? (
-    <PendingDate key={pending.id} date={pending} onRate={onRate} onCancel={onCancel} busy={busy} />
+    <PendingDate key={pending.id} date={pending} placesById={placesById} onRate={onRate} onCancel={onCancel} busy={busy} />
   ) : (
-    <Generator archived={state.archived} onAccept={onAccept} busy={busy} />
+    <Generator places={places} archived={state.archived} onAccept={onAccept} busy={busy} />
   )
 }

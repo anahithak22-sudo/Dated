@@ -31,3 +31,16 @@ create policy "anon all place_state" on public.place_state
 drop policy if exists "anon all dates" on public.dates;
 create policy "anon all dates" on public.dates
   for all to anon using (true) with check (true);
+
+-- Места, добавленные через сайт (кнопка «+ Добавить место»)
+create table if not exists public.custom_places (
+  id         text primary key,
+  data       jsonb not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.custom_places enable row level security;
+
+drop policy if exists "anon all custom_places" on public.custom_places;
+create policy "anon all custom_places" on public.custom_places
+  for all to anon using (true) with check (true);

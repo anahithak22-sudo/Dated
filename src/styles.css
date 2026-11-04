@@ -348,3 +348,101 @@ button { font: inherit; color: inherit; }
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
 
 :focus-visible { outline: 2px solid var(--lilac); outline-offset: 2px; }
+
+/* ---------- добавление места ---------- */
+.add-bar { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 4px 0 0; text-align: center; }
+.hint code { background: #fff; padding: 1px 6px; border-radius: 6px; }
+.mine {
+  justify-self: start;
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--lilac);
+  background: var(--lavender);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: rgba(74, 59, 79, 0.28);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+}
+@media (min-width: 600px) { .modal-backdrop { align-items: center; } }
+.modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 100%;
+  overflow-y: auto;
+  background: #fffdfb;
+  display: grid;
+  gap: 14px;
+}
+.modal-head { display: flex; align-items: center; justify-content: space-between; }
+.modal-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.7rem; margin: 0; }
+.icon-btn {
+  border: 0;
+  background: var(--lavender);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.seg { display: flex; gap: 4px; padding: 4px; background: var(--bg); border-radius: 999px; }
+.seg button {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 9px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+}
+.seg button.on { background: #fff; color: var(--ink); box-shadow: 0 4px 14px -6px rgba(201, 111, 138, 0.5); }
+
+.field { display: grid; gap: 6px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.field > span { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+.field input:not([type='checkbox']),
+.field textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  /* 16px — чтобы iPhone не зумил страницу при фокусе */
+  font-size: 16px;
+}
+.field textarea { resize: vertical; }
+.field input:focus, .field textarea:focus { outline: 2px solid var(--blush); border-color: var(--rose); }
+.field input:disabled { background: var(--bg); }
+.row { display: flex; gap: 8px; align-items: center; }
+.row input { flex: 1; min-width: 0; }
+.dash { color: var(--muted); }
+
+.check { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--rose); }
+.check.small { font-size: 0.8rem; font-weight: 400; color: var(--muted); gap: 5px; white-space: nowrap; }
+.check.small input { width: 16px; height: 16px; }
+
+.week { display: grid; gap: 6px; }
+.day-row { display: grid; grid-template-columns: 28px 1fr auto; gap: 8px; align-items: center; }
+.day-row .day { font-weight: 700; color: var(--muted); font-size: 0.9rem; }
+.day-row input:not([type='checkbox']) { padding: 7px 10px; }
+
+.form-error { color: var(--rose-deep); margin: 0; font-weight: 600; text-align: center; }
+.modal .actions { margin-top: 4px; }

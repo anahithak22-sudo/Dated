@@ -1,30 +1,54 @@
+import { useState } from 'react'
 import PlaceCard from './PlaceCard.jsx'
-import { DAY_KEYS, historyFor, places } from '../lib/places.js'
+import PlaceForm from './PlaceForm.jsx'
+import { DAY_KEYS, historyFor } from '../lib/places.js'
 
 const SECTIONS = [
   { type: 'food', title: 'Покушать' },
   { type: 'fun', title: 'Развлечения' },
 ]
 
-export default function PlacesView({ mode, state, busy, onArchive }) {
+export default function PlacesView({ mode, places, state, busy, onArchive, onAddPlace, onUpdatePlace, onDeletePlace }) {
+  // null — форма закрыта, 'new' — новое место, объект — редактирование
+  const [editing, setEditing] = useState(null)
   const inArchive = mode === 'archive'
   const todayKey = DAY_KEYS[new Date().getDay()]
   const pending = state.dates.find((d) => d.status === 'pending')
   const pendingIds = pending ? [pending.food_id, pending.fun_id] : []
   const list = places.filter((p) => Boolean(state.archived[p.id]) === inArchive)
 
-  if (list.length === 0) {
-    return (
-      <div className="card empty big">
-        {inArchive
-          ? 'Архив пока пуст. Сюда попадут места после свиданий ✦'
-          : 'Все места в архиве. Верните что-нибудь или пришлите новые ссылки ✦'}
-      </div>
-    )
+  const close = () => setEditing(null)
+  const save = async (data) => {
+    const ok = editing === 'new' ? await onAddPlace(data) : await onUpdatePlace(editing.id, data)
+    if (ok) close()
+  }
+  const remove = async () => {
+    if (await onDeletePlace(editing.id)) close()
   }
 
   return (
     <div className="places">
+      {!inArchive && (
+        <div className="add-bar">
+          <button className="btn btn-primary" onClick={() => setEditing('new')} disabled={!state.customReady}>
+            + Добавить место
+          </button>
+          {!state.customReady && (
+            <p className="hint">
+              Чтобы добавлять места, создайте в Supabase таблицу <code>custom_places</code> (инструкция в README).
+            </p>
+          )}
+        </div>
+      )}
+
+      {list.length === 0 && (
+        <div className="card empty big">
+          {inArchive
+            ? 'Архив пока пуст. Сюда попадут места после свиданий ✦'
+            : 'Все места в архиве. Верните что-нибудь или добавьте новое ✦'}
+        </div>
+      )}
+
       {SECTIONS.map(({ type, title }) => {
         const items = list.filter((p) => p.type === type)
         if (items.length === 0) return null
@@ -50,12 +74,29 @@ export default function PlacesView({ mode, state, busy, onArchive }) {
                       В архив
                     </button>
                   )}
+                  {p.custom && (
+                    <button className="btn btn-ghost btn-sm" disabled={busy} onClick={() => setEditing(p)}>
+                      ✎ Изменить
+                    </button>
+                  )}
                 </PlaceCard>
               ))}
             </div>
           </section>
         )
       })}
+
+      {editing && (
+        <PlaceForm
+          key={editing === 'new' ? 'new' : editing.id}
+          place={editing === 'new' ? null : editing}
+          busy={busy}
+          onSave={save}
+          onDelete={editing === 'new' ? null : remove}
+          deleteDisabled={editing !== 'new' && pendingIds.includes(editing.id)}
+          onClose={close}
+        />
+      )}
     </div>
   )
 }

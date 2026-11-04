@@ -10,6 +10,7 @@ export default function PlaceCard({ place, dayKey, history = [], showType = true
   return (
     <article className={`card place type-${place.type}`}>
       {showType && <div className="eyebrow">✦ {TYPE_LABEL[place.type]}</div>}
+      {place.custom && <div className="mine">добавлено вами</div>}
       <h3>{place.name}</h3>
       {place.description && <p className="desc">{place.description}</p>}
 
