@@ -162,6 +162,26 @@
     "address": "ул. Таманяна, 2, Ереван (Каскад)"
   },
   {
+    "id": "juno-bakery",
+    "type": "food",
+    "name": "Juno Bakery",
+    "description": "Новая эстетичная и уютная пекарня-кафе на Маштоца: выпечка и десерты.",
+    "address": "пр. Маштоца, 41, Ереван",
+    "hours": {
+      "mon": "10:00–20:00",
+      "tue": "10:00–20:00",
+      "wed": "10:00–20:00",
+      "thu": "10:00–20:00",
+      "fri": "10:00–20:00",
+      "sat": "10:00–20:00",
+      "sun": "10:00–20:00"
+    },
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://www.spyur.am/ru/companies/juno-bakery/59359",
+    "source": ""
+  },
+  {
     "id": "dalma-bowling",
     "type": "fun",
     "name": "Боулинг в Dalma Garden Mall",
