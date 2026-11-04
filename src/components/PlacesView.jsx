@@ -23,8 +23,10 @@ export default function PlacesView({ mode, places, state, busy, onArchive, onAdd
     if (ok) close()
   }
   const remove = async () => {
-    if (await onDeletePlace(editing.id)) close()
+    if (await onDeletePlace(editing)) close()
   }
+  const confirmDelete = (p) =>
+    window.confirm(`Удалить «${p.name}» из списка? История свиданий сохранится.`) && onDeletePlace(p)
 
   return (
     <div className="places">
@@ -77,6 +79,16 @@ export default function PlacesView({ mode, places, state, busy, onArchive, onAdd
                   {p.custom && (
                     <button className="btn btn-ghost btn-sm" disabled={busy} onClick={() => setEditing(p)}>
                       ✎ Изменить
+                    </button>
+                  )}
+                  {state.customReady && (
+                    <button
+                      className="btn btn-link btn-delete"
+                      disabled={busy || pendingIds.includes(p.id)}
+                      title={pendingIds.includes(p.id) ? 'Это место в текущем свидании' : undefined}
+                      onClick={() => confirmDelete(p)}
+                    >
+                      Удалить
                     </button>
                   )}
                 </PlaceCard>

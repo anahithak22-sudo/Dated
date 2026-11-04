@@ -446,3 +446,5 @@ button { font: inherit; color: inherit; }
 
 .form-error { color: var(--rose-deep); margin: 0; font-weight: 600; text-align: center; }
 .modal .actions { margin-top: 4px; }
+.btn-delete { margin-left: auto; font-size: 0.85rem; padding: 8px 4px; }
+.btn-delete:hover:not(:disabled) { color: var(--rose-deep); }

@@ -37,8 +37,14 @@ const remote = {
     // Таблицы custom_places может ещё не быть — тогда остальное всё равно работает
     const res = await supabase.from('custom_places').select('id, data').order('created_at')
     const customReady = !res.error
-    const custom = customReady ? res.data.map((r) => ({ ...r.data, id: r.id, custom: true })) : []
-    return { archived, dates, custom, customReady }
+    const rows = customReady ? res.data : []
+    // Строка с data.deleted — пометка «встроенное место удалено»
+    const hidden = rows.filter((r) => r.data?.deleted).map((r) => r.id)
+    const custom = rows.filter((r) => !r.data?.deleted).map((r) => ({ ...r.data, id: r.id, custom: true }))
+    return { archived, dates, custom, hidden, customReady }
+  },
+  async hideBuiltIn(id) {
+    check(await supabase.from('custom_places').upsert({ id, data: { deleted: true } }))
   },
   async addPlace(place) {
     const { id, custom, ...data } = place
@@ -79,9 +85,9 @@ const LS_KEY = 'dated-state-v1'
 function readLocal() {
   try {
     const s = JSON.parse(localStorage.getItem(LS_KEY)) ?? {}
-    return { archived: s.archived ?? {}, dates: s.dates ?? [], custom: s.custom ?? [] }
+    return { archived: s.archived ?? {}, dates: s.dates ?? [], custom: s.custom ?? [], hidden: s.hidden ?? [] }
   } catch {
-    return { archived: {}, dates: [], custom: [] }
+    return { archived: {}, dates: [], custom: [], hidden: [] }
   }
 }
 function writeLocal(state) {
@@ -97,6 +103,11 @@ const local = {
     const s = readLocal()
     s.dates.sort((a, b) => b.day.localeCompare(a.day))
     return { ...s, custom: s.custom.map((p) => ({ ...p, custom: true })), customReady: true }
+  },
+  async hideBuiltIn(id) {
+    const s = readLocal()
+    if (!s.hidden.includes(id)) s.hidden.push(id)
+    writeLocal(s)
   },
   async addPlace(place) {
     const s = readLocal()

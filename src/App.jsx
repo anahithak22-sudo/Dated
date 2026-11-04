@@ -59,10 +59,14 @@ export default function App() {
     onArchive: run((id, value) => store.setArchived([id], value)),
     onAddPlace: run((place) => store.addPlace(place)),
     onUpdatePlace: run((id, place) => store.updatePlace(id, place)),
-    onDeletePlace: run((id) => store.deletePlace(id)),
+    // Своё место удаляем из базы, встроенное — помечаем удалённым
+    onDeletePlace: run((place) => (place.custom ? store.deletePlace(place.id) : store.hideBuiltIn(place.id))),
   }
 
-  const places = useMemo(() => [...builtInPlaces, ...(state?.custom ?? [])], [state])
+  const places = useMemo(() => {
+    const hidden = new Set(state?.hidden ?? [])
+    return [...builtInPlaces.filter((p) => !hidden.has(p.id)), ...(state?.custom ?? [])]
+  }, [state])
   const archivedCount = state ? places.filter((p) => state.archived[p.id]).length : 0
 
   return (
