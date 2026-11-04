@@ -44,6 +44,42 @@
     "source": "https://vt.tiktok.com/ZSpLoSx18/"
   },
   {
+    "type": "food",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://vt.tiktok.com/ZSpLoJmxu/",
+    "source": "https://vt.tiktok.com/ZSpLoJmxu/",
+    "id": "lanzhou-noodles",
+    "name": "Lanzhou Noodles",
+    "description": "Новое китайское место с ланьчжоуской лапшой, которую тянут вручную.",
+    "address": "ул. Вардананц, 16/1, Ереван"
+  },
+  {
+    "type": "food",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://vt.tiktok.com/ZSpLoJmxu/",
+    "source": "https://vt.tiktok.com/ZSpLoJmxu/",
+    "id": "red-pomegranate",
+    "name": "Red Pomegranate",
+    "description": "Новый китайский ресторан в центре.",
+    "address": "ул. Месропа Маштоца, 3/1, Ереван"
+  },
+  {
+    "type": "food",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://vt.tiktok.com/ZSpLoJmxu/",
+    "source": "https://vt.tiktok.com/ZSpLoJmxu/",
+    "id": "yiguoyu-fish-hot-pot",
+    "name": "Yiguoyu Fish Hot Pot",
+    "description": "Китайский хот-пот: рыба в кипящем бульоне прямо на столе.",
+    "address": "ул. Киевян, 2а, Ереван"
+  },
+  {
     "id": "dalma-bowling",
     "type": "fun",
     "name": "Боулинг в Dalma Garden Mall",
