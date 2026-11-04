@@ -3,8 +3,20 @@
 // (общее для обоих телефонов). Иначе — в localStorage этого браузера (для разработки).
 import { createClient } from '@supabase/supabase-js'
 
-const url = import.meta.env.VITE_SUPABASE_URL
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY
+// Берём только https://xxxx.supabase.co — без /rest/v1/, слешей и пробелов,
+// даже если в переменную вставили адрес с лишним путём
+function projectOrigin(raw) {
+  const value = raw?.trim()
+  if (!value) return null
+  try {
+    return new URL(value.includes('://') ? value : `https://${value}`).origin
+  } catch {
+    return value
+  }
+}
+
+const url = projectOrigin(import.meta.env.VITE_SUPABASE_URL)
+const key = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim()
 
 export const isShared = Boolean(url && key)
 const supabase = isShared ? createClient(url, key) : null
