@@ -80,6 +80,56 @@
     "address": "ул. Киевян, 2а, Ереван"
   },
   {
+    "type": "food",
+    "hours": null,
+    "priceMin": 2400,
+    "priceMax": 5000,
+    "link": "",
+    "source": "",
+    "id": "secret-drinks",
+    "name": "Secret",
+    "description": "Напитки с новым для Еревана концептом: выбираешь номер, жмёшь кнопку, и напиток готовят за закрытой стеной. Заказы выполняются по очереди.",
+    "address": "ул. Сарьяна, 33, Ереван (напротив здания Leo 1)",
+    "priceNote": "на двоих (напиток 1 200–2 500 ֏)"
+  },
+  {
+    "type": "food",
+    "hours": null,
+    "priceMin": 6800,
+    "priceMax": 9900,
+    "link": "https://www.instagram.com/jeffdebruges_armenia/",
+    "source": "",
+    "id": "jeff-de-bruges",
+    "name": "Jeff de Bruges",
+    "description": "Бутик франко-бельгийского шоколада, единственный в Армении. Можно собрать свой бокс конфет. Есть ещё корнер в подземном ТЦ в парке «Малибу» на Маштоца.",
+    "address": "ул. Туманяна, 30, Ереван",
+    "priceNote": "за коробку конфет"
+  },
+  {
+    "type": "food",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "",
+    "source": "",
+    "id": "georges-dom",
+    "name": "George’s DOM",
+    "description": "Ресторан с «мама-хинкали»: разрезаешь один гигантский хинкали, а внутри 10 маленьких.",
+    "address": "ул. Сарьяна, 19–21, Ереван"
+  },
+  {
+    "type": "food",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "",
+    "source": "",
+    "id": "bek-beer",
+    "name": "Bek Beer",
+    "description": "Морепродукты и крафтовое пиво: на стол высыпают ведро с крабами, мидиями и раками, а пиво подают в закаточных банках. Точный адрес уточнить: кнопка «Карты» ищет место по названию.",
+    "address": "Bek Beer, Ереван"
+  },
+  {
     "id": "dalma-bowling",
     "type": "fun",
     "name": "Боулинг в Dalma Garden Mall",
