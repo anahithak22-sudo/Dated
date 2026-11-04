@@ -62,6 +62,7 @@ export function linkLabel(url) {
   if (/tiktok\.com/i.test(url)) return 'TikTok'
   if (/facebook\.com|fb\.com/i.test(url)) return 'Facebook'
   if (/t\.me/i.test(url)) return 'Telegram'
+  if (/yandex\.|google\.[a-z.]+\/maps|maps\.app\.goo\.gl/i.test(url)) return 'Карты'
   return 'Сайт'
 }
 

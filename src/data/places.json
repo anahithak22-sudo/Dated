@@ -1,66 +1,108 @@
 [
   {
-    "id": "demo-cafe-zvezdochka",
+    "id": "janpho",
     "type": "food",
-    "name": "Демо-кафе «Звёздочка»",
-    "description": "Пример записи — удалим, когда добавим настоящие места. Уютное кафе с десертами и видом на город.",
-    "address": "ул. Абовяна, 1, Ереван",
+    "name": "JanPho",
+    "description": "Вьетнамская кухня: фо, спринг-роллы и другие азиатские блюда.",
+    "address": "ул. Налбандяна, 47, Ереван",
     "hours": {
-      "mon": "10:00–23:00", "tue": "10:00–23:00", "wed": "10:00–23:00", "thu": "10:00–23:00",
-      "fri": "10:00–00:00", "sat": "11:00–00:00", "sun": "11:00–22:00"
+      "mon": "10:30–22:00", "tue": "10:30–22:00", "wed": "10:30–22:00", "thu": "10:30–22:00",
+      "fri": "10:30–22:00", "sat": "10:30–22:00", "sun": "10:30–22:00"
     },
-    "priceMin": 8000,
-    "priceMax": 15000,
-    "priceNote": "на двоих",
-    "link": "https://www.instagram.com/",
-    "source": ""
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://www.instagram.com/janpho.evn/",
+    "source": "https://vt.tiktok.com/ZSpLwKmyt/"
   },
   {
-    "id": "demo-restaurant-lavanda",
+    "id": "neko-ramen",
     "type": "food",
-    "name": "Демо-ресторан «Лаванда»",
-    "description": "Пример записи. Армянская кухня, живая музыка по выходным.",
-    "address": "пр. Маштоца, 10, Ереван",
+    "name": "Neko Ramen",
+    "description": "Японская раменная.",
+    "address": "ул. Дереника Демирчяна, 27, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://yandex.com/maps/org/neko_ramen/107152199722/",
+    "source": "https://vt.tiktok.com/ZSpLwKmyt/"
+  },
+  {
+    "id": "zepyur",
+    "type": "food",
+    "name": "Зепюр",
+    "description": "Ресторан в центре, работает до полуночи.",
+    "address": "ул. Абовяна, 24, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://vt.tiktok.com/ZSpLoSx18/",
+    "source": "https://vt.tiktok.com/ZSpLoSx18/"
+  },
+  {
+    "id": "dalma-bowling",
+    "type": "fun",
+    "name": "Боулинг в Dalma Garden Mall",
+    "description": "Боулинг в развлекательной зоне торгового центра, рядом кинотеатр Cinema Star.",
+    "address": "ул. Цицернакаберди, 3, Ереван (Dalma Garden Mall)",
     "hours": {
-      "mon": null, "tue": "12:00–23:00", "wed": "12:00–23:00", "thu": "12:00–23:00",
-      "fri": "12:00–01:00", "sat": "12:00–01:00", "sun": "12:00–23:00"
+      "mon": "10:00–00:30", "tue": "10:00–00:30", "wed": "10:00–00:30", "thu": "10:00–00:30",
+      "fri": "10:00–00:30", "sat": "10:00–00:30", "sun": "10:00–00:30"
     },
-    "priceMin": 15000,
-    "priceMax": 30000,
-    "priceNote": "на двоих",
-    "link": "https://www.instagram.com/",
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://dalma.am/",
     "source": ""
   },
   {
-    "id": "demo-fun-gonchar",
+    "id": "ararat-brandy-museum",
     "type": "fun",
-    "name": "Демо-мастерская гончарства",
-    "description": "Пример записи. Мастер-класс на двоих: лепим чашки на гончарном круге.",
-    "address": "ул. Туманяна, 5, Ереван",
-    "hours": {
-      "mon": "11:00–20:00", "tue": "11:00–20:00", "wed": "11:00–20:00", "thu": "11:00–20:00",
-      "fri": "11:00–20:00", "sat": "11:00–18:00", "sun": null
-    },
-    "priceMin": 20000,
-    "priceMax": 25000,
-    "priceNote": "на двоих",
-    "link": "https://www.instagram.com/",
+    "name": "Музей коньяка «Арарат»",
+    "description": "Экскурсия по старейшему коньячному заводу с дегустацией, около 1,5–2 часов. Лучше бронировать заранее.",
+    "address": "пр. Адмирала Исакова, 2, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://en.araratbrandy.com/",
     "source": ""
   },
   {
-    "id": "demo-fun-kvest",
+    "id": "yerevan-park",
     "type": "fun",
-    "name": "Демо-квест «Тайная комната»",
-    "description": "Пример записи. Квест на 60 минут, можно вдвоём.",
-    "address": "ул. Сарьяна, 20, Ереван",
-    "hours": {
-      "mon": "12:00–22:00", "tue": "12:00–22:00", "wed": "12:00–22:00", "thu": "12:00–22:00",
-      "fri": "12:00–00:00", "sat": "12:00–00:00", "sun": "12:00–22:00"
-    },
-    "priceMin": 18000,
-    "priceMax": 18000,
-    "priceNote": "за комнату",
-    "link": "https://www.instagram.com/",
+    "name": "Yerevan Park",
+    "description": "Самый большой парк аттракционов в Армении: американские горки и колесо обозрения высотой 40 м.",
+    "address": "ул. Монте Мелконяна, 31, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "https://vt.tiktok.com/ZSpLottSa/",
+    "source": "https://vt.tiktok.com/ZSpLottSa/"
+  },
+  {
+    "id": "dino-park",
+    "type": "fun",
+    "name": "Dino Park",
+    "description": "Парк динозавров под открытым небом, прогулка примерно на 1,5 часа.",
+    "address": "пр. Азатутян, 2, Ереван",
+    "hours": null,
+    "priceMin": null,
+    "priceMax": null,
+    "link": "",
     "source": ""
+  },
+  {
+    "id": "garni-geghard",
+    "type": "fun",
+    "name": "Гарни и Гегард",
+    "description": "Поездка за город: античный храм Гарни и скальный монастырь Гегард (ЮНЕСКО). Около 40 минут от Еревана, закладывайте полдня.",
+    "address": "Гарни, Котайкская область",
+    "hours": {
+      "mon": null, "tue": "10:00–21:30", "wed": "10:00–21:30", "thu": "10:00–21:30",
+      "fri": "10:00–21:30", "sat": "10:00–21:30", "sun": "10:00–21:30"
+    },
+    "priceMin": 3000,
+    "priceMax": 3000,
+    "priceNote": "на двоих (вход в Гарни; Гегард бесплатно)",
+    "link": "https://vt.tiktok.com/ZSpN1812y/",
+    "source": "https://vt.tiktok.com/ZSpN1812y/"
   }
 ]
